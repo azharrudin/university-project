@@ -14,4 +14,4 @@ int main() {
     printf("NIS: %s\n", A);
     printf("Age: %d\n", U);
     return 0;
-}
+}x
