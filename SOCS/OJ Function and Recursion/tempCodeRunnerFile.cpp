@@ -1,0 +1,1 @@
+int foodCounter = calculatefood(map, x, y);
