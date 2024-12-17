@@ -1,25 +1,39 @@
 #include<stdio.h>
-
-int main(){
-    int a, total, b;
-    scanf("%d",&a);
-
-    for (int i = 0; i < a; i++)
-    {
-        int odd = 0, even = 0;
-        scanf("%d",&total);
-        for (int j = 0; j < total; j++)
-        {
-            scanf("%d", &b); 				//input angkany
-            if (b %  2 == 0)
-            {
-                even++;
-            } else {
-                odd++;
-            }   
-        }
-        printf("Odd group : %d integer(s).\n", odd);
-        printf("Even group : %d integer(s).\n\n", even);
+#include <string.h>
+int sum(char x[], int a, int b){
+    int i = a;
+    int total = 0;
+    while( i <= b  ){
+        total += x[i];
+        i++;
     }
+    return total;
+}
+int main(){
+    int i,a,f;
+    
+    scanf("%d",&a);
+    char ajis[a];
+    for (i = 0; i < a; i++)
+    {
+
+        scanf("%c", &ajis[i]);
+        
+    }
+    printf("\n-- %d ---", ajis[1]);
+    /*
+    scanf("%d",&f);
+    int friends[f][2];
+    for (i = 0; i < f; i++)
+    {
+        
+        scanf("%d %d", &friends[i][0], &friends[i][1]);
+
+    }
+    for (i = 0; i < f; i++)
+    {
+        printf("\n- %d\n", sum(ajis, friends[i][0], friends[i][0] ));
+    }
+    */
     return 0;
 }
