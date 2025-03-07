@@ -1,0 +1,169 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flexbox Centering</title>
+    <style>
+        :root {
+            --background-color: #D9D9D9;
+            --disabled-button: #9D9D9D;
+        } 
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .card {
+        background-color: white;
+        color: #000000;
+        width: 30vw;
+        height: 50vh;
+        padding: 10px;
+        border-radius: 10px;
+      }
+      .text-secondary {
+        color: #969696;
+        font-size: 14px;
+      }
+      .title {
+        font-size: 24px;
+        margin-top: 80px;
+      }
+      .background {
+        background-color: var(--background-color);
+        padding: 0;
+      }
+      .container-rating {
+        display: flex;
+        margin: 10px;
+        margin-top: 20px;
+        justify-content: center;
+      }
+      .btn-style {
+        margin: 10px;
+        border-radius: 1000%;
+        width: 50px;
+        height: 50px;
+        padding: 14px;
+        background-color: transparent;
+        border: 1px solid var(--disabled-button);
+      }
+      .btn-style:hover {
+        background: #fff2dc;
+      }
+
+      .btn-submit {
+        background-color: #9d9d9d;
+        color: white;
+        padding: 20px;
+        margin-top: 25px;
+        border: none;
+        border-radius: 25px;
+        width: 100%;
+      }
+      .popup {
+        position: fixed;
+        align-items: end;
+        bottom: 10;
+        right: 70;
+        padding: 10px;
+        font-size: 14px;
+      }
+     
+
+    </style>
+  </head>
+  <body class="background">
+    <div class="container">
+      <div class="card">
+        <div style="padding-top: 15px">
+          <img src="./star-image.png" height="50" width="50" />
+          <h3 class="title" style="margin-bottom: 20px; margin-top: 10px">
+            How did we do?
+          </h3>
+          <p style="margin-top: 0" class="text-secondary">
+            Please let us know how we did with your support. All feedback is
+            appreciated to help us improving our offering
+          </p>
+          <div class="container-rating">
+            <button class="btn-style" id="rating-1">1</button>
+            <button class="btn-style" id="rating-2">2</button>
+            <button class="btn-style" id="rating-3">3</button>
+            <button class="btn-style" id="rating-4">4</button>
+            <button class="btn-style" id="rating-5">5</button>
+          </div>
+          <button class="btn-submit" id="btn-submit-id">Submit</button>
+        </div>
+      </div>
+    </div>
+    <div class="popup">
+      <div
+        id="popup-div"
+        style="
+          background-color: white;
+          padding: 10px;
+          border-radius: 8px;
+          width: 230px;
+          font-weight: bold;
+        ">
+        Feedback successfuly submitted
+      </div>
+    </div>
+    <script>
+      var submit = false;
+      document.getElementById("popup-div").style.visibility = "hidden";
+      document.getElementById("rating-1").onclick = function () {
+        document.getElementById("rating-1").style.backgroundColor = "#FFAE2B";
+        document.getElementById("btn-submit-id").style.backgroundColor =
+          "#402CFA";
+         submit = true;
+      };
+      document.getElementById("rating-2").onclick = function () {
+        document.getElementById("rating-2").style.backgroundColor = "#FFAE2B";
+        document.getElementById("btn-submit-id").style.backgroundColor =
+          "#402CFA";
+         submit = true;
+      };
+      document.getElementById("rating-3").onclick = function () {
+        document.getElementById("btn-submit-id").style.backgroundColor =
+          "#402CFA";
+        document.getElementById("rating-3").style.backgroundColor = "#FFAE2B";
+         submit = true;
+
+      };
+      document.getElementById("rating-4").onclick = function () {
+        document.getElementById("btn-submit-id").style.backgroundColor =
+          "#402CFA";
+         submit = true;
+        document.getElementById("rating-4").style.backgroundColor = "#FFAE2B";
+      };
+      document.getElementById("rating-5").onclick = function () {
+        document.getElementById("btn-submit-id").style.backgroundColor =
+          "#402CFA";
+         submit = true;
+        document.getElementById("rating-5").style.backgroundColor = "#FFAE2B";
+      };
+      document.getElementById("btn-submit-id").onclick = function () {
+        if (submit == true) {
+          document.getElementById("popup-div").style.visibility = "visible";
+          setTimeout( () => {
+            document.getElementById("popup-div").style.visibility = "hidden";
+          },5000);
+          submit = false;
+          document.getElementById("btn-submit-id").style.backgroundColor = "#9d9d9d"
+          document.getElementById("rating-1").backgroundColor = "transparent"
+          document.getElementById("rating-2").backgroundColor = "transparent"
+
+          document.getElementById("rating-3").backgroundColor = "transparent"
+
+          document.getElementById("rating-4").backgroundColor = "transparent"
+
+          document.getElementById("rating-5").backgroundColor = "transparent"
+
+        }
+      };
+    </script>
+  </body>
+</html>

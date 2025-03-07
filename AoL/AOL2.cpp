@@ -3,27 +3,54 @@
 
 #include <string.h>
 
-FILE *f;
 #define TRUE 1
+/***********************************************
+ * - struct ObjectData
+ * digunakan sebagai object penyimpanan data yang ada didalam file csv 
+ * yang nantinya akan dimasukan data melalui fscanf
+ ***********************************************/
 typedef struct ObjectData
 {
     char location1[100];
     char city[100];
     char price[10];
-    char rooms[10]; // pakai char karena %d tidak dapat terscan
+    char rooms[10]; // pakai char karena %d tidak dapat terscan di-fscanf
     char bathrooms[10];
     char carparks[10];
     char type[100];
     char furnish[100];
 } ObjectData;
-
+/***********************************************
+ * - ObjectData *data
+ * menginisialisasi data dengan memory allocation
+ * agar nantinya dapat dimasukan data-nya oleh fscanf
+ * secara dinamis
+ * 
+ * - int count
+ * jumlah dari total baris yang ada didalam CSV (default: 0)
+ ***********************************************/
 ObjectData *data = (ObjectData *)malloc(1 * sizeof(ObjectData));
 int count = 0;
+
+/***********************************************
+ * - FILE *f
+ * adalah object FILE yang akan digunakan oleh program
+ * 
+ * - int openFile(void)
+ * digunakan untuk membuka file.csv dengan object-f
+ ***********************************************/
+FILE *f;
 void openFile()
 {
     f = fopen("file.csv", "r");
 }
-
+/***********************************************
+ * - void readCSV(void)
+ * digunakan untuk membaca data yang ada didalam file.csv 
+ * perbaris yang nanti akan secara dinamis dimasukan kedalam
+ * ObjectData *data, dan count akan diubah sesuai dengan jumlah
+ * baris yang terscan
+ ***********************************************/
 void readCSV()
 {
 
@@ -35,6 +62,14 @@ void readCSV()
     }
     count = i;
 }
+/***********************************************
+ * - void printCSV(int max)
+ * @max - batas maximun data yang dapat diprint
+ * 
+ * digunakan untuk menampilkan data yang sudah
+ * dimasukan kedalam `ObjectData *data` kedalam console
+ * sesuai dengan batas jumlah yang diberikan.
+ ***********************************************/
 void printCSV(int max)
 {
     int i = 0;
@@ -58,6 +93,13 @@ void printCSV(int max)
             break;
     }
 }
+/***********************************************
+ * - void printCSV(int max)
+ * @column - nama dari kolom / header csv
+ * @value - nilai yang ingin dicari
+ * menggunakan linear sorting untuk mendapatkan 
+ * nilai yang ingin dicari sesuai kolom
+ ***********************************************/
 void searchCSV(char *column, char *value)
 {
     int i = 0;
@@ -103,6 +145,13 @@ void searchCSV(char *column, char *value)
     for (int g = 0; g < 40; g++)
         printf("----");
 }
+/***********************************************
+ * - void printCSV(int max)
+ * @column - nama dari kolom / header csv
+ * @modes  - ascending / descending
+ * 
+ * sorting berdasarkan nama kolom menggunakan bubble sort
+ ***********************************************/
 void sortCSV(char *column, char *modes)
 {
     /**
@@ -133,9 +182,10 @@ void sortCSV(char *column, char *modes)
             }
             else if (strcmp(column, "carparks") == 0)
             {
-                b1 = atoi(data[j].carparks);
-                b2 = atoi(data[j + 1].carparks);
+                b1 = atoi(data[j].bathrooms);
+                b2 = atoi(data[j + 1].bathrooms);
             }
+            // cek mode ascending atau bukan
             int condition = strcmp(modes, "ascending") == 0 ? b1 > b2 : b1 < b2;
 
             if (condition)
@@ -155,6 +205,14 @@ void sortCSV(char *column, char *modes)
     }
     printCSV(8);
 }
+/***********************************************
+ * - void printCSV(int max)
+ * @column - nama dari kolom / header csv
+ * @modes  - ascending / descending
+ * 
+ * export kedalam csv menggunakan nilai dari
+ * semua index di array ObjectData *data.
+ ***********************************************/
 void exportCSV(char *name)
 {
     FILE *file = fopen(name, "w+");
